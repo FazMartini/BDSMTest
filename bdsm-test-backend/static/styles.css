@@ -45,6 +45,12 @@ h1 {
     margin-bottom: 15px;
 }
 
+.question-block input[type="radio"] {
+    margin: 0;
+    transform: scale(1);
+    vertical-align: middle;
+}
+
 .question-block {
     padding: 15px;                 /* Add padding around each question */
     padding-left: 40px;            /* increase left padding inside block */
@@ -65,7 +71,7 @@ h1 {
     display: flex;
     gap: 25px;                      /* increased gap between options */
     flex-wrap: nowrap;             /* prevent wrapping to multiple lines */
-    align-items: stretch;
+    align-items: center;
     margin-top: 12px;
 }
 
@@ -78,11 +84,7 @@ h1 {
     color: white;
 }
 
-.question-block input[type="radio"] {
-    margin: 0;
-    transform: scale(1);
-    vertical-align: middle;
-}
+
 
 button {
     width: 100%;

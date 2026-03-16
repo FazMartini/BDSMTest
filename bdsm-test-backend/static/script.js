@@ -1,67 +1,106 @@
-window.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("testForm");
-  const questionsContainer = document.getElementById("questionsContainer");
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("Script loaded");
 
-  fetch("http://192.168.0.218:5000/questions")
-    .then(response => response.json())
+  const questionsContainer = document.getElementById("questionsContainer");
+  const form = document.getElementById("testForm");
+
+  fetch("/questions")
+    .then(res => {
+      console.log("Fetch /questions status:", res.status);
+      return res.json();
+    })
     .then(questions => {
-      console.log(questions);
-      questions.forEach(question => {
+      console.log("Questions loaded:", questions);
+
+      if (!Array.isArray(questions)) {
+        console.error("Questions is not an array!");
+        return;
+      }
+
+      questionsContainer.innerHTML = "";
+
+      questions.forEach(q => {
         const div = document.createElement("div");
         div.className = "question-block";
+
+        const p = document.createElement("p");
+        p.textContent = q.question;
+
         const optionsDiv = document.createElement("div");
         optionsDiv.className = "options";
-        optionsDiv.innerHTML = ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"].map((label, i) => `
-          <label><input type="radio" name="q${question.id}" value="${(i + 1) * 0.25}"> ${label}</label>
-        `).join("");
-        
-        div.innerHTML = `<p>${question.text}</p>`;
+
+        [
+          "Strongly Disagree",
+          "Disagree",
+          "Neutral",
+          "Agree",
+          "Strongly Agree"
+        ].forEach((label, i) => {
+          const optionLabel = document.createElement("label");
+
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = `q_${q.id}`;
+          input.value = String(i + 1);
+
+          optionLabel.appendChild(input);
+          optionLabel.append(` ${label}`);
+          optionsDiv.appendChild(optionLabel);
+        });
+
+        div.appendChild(p);
         div.appendChild(optionsDiv);
         questionsContainer.appendChild(div);
       });
     })
-    .catch(error => {
-      console.error('Error loading questions:', error);
-    });
+    .catch(err => console.error("Error loading questions:", err));
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener("submit", e => {
     e.preventDefault();
-    
-    const questions = await fetch("https://www.fazbdsmtest.co.uk/questions").then(r => r.json());
-    const answers = questions.map(q => {
-      const checked = document.querySelector(`input[name="q${q.id}"]:checked`);
-      return {
-        id: q.id,
-        answer: checked ? parseFloat(checked.value) : 0
-      };
+
+    const answers = [];
+
+    document.querySelectorAll(".question-block").forEach(block => {
+      const checked = block.querySelector('input[type="radio"]:checked');
+      if (!checked) return;
+
+      const id = parseInt(checked.name.replace("q_", ""));
+      const answer = parseInt(checked.value);
+
+      answers.push({ id, answer });
     });
 
-    try {
-      const response = await fetch("https://www.fazbdsmtest.co.uk/submit", {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(answers)
-      });
-      const results = await response.json();
-      displayResults(results);
-    } catch (error) {
-      console.error('Error submitting answers:', error);
-    }
+    fetch("/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(answers)
+    })
+      .then(res => res.json())
+      .then(result => {
+        console.log("Results:", result);
+
+        const results = document.getElementById("results");
+        const traitsContainer = document.getElementById("traitsContainer");
+        traitsContainer.innerHTML = "";
+
+        const sortedTraits = Object.entries(result.trait_percentages || {})
+          .sort((a, b) => b[1] - a[1]); // highest → lowest
+
+        sortedTraits.forEach(([trait, value]) => {
+          const p = document.createElement("p");
+          p.className = "trait";
+
+          p.innerHTML = `
+            <span class="trait-name">${trait}</span>
+            <span class="score">${Math.round(value)}%</span>
+          `;
+
+          traitsContainer.appendChild(p);
+        });
+
+        results.style.display = "block";
+        results.scrollIntoView({ behavior: "smooth" });
+      })
+      .catch(err => console.error("Error submitting answers:", err));
   });
-
-  function displayResults(traits) {
-    const traitsContainer = document.getElementById('traitsContainer');
-    traitsContainer.innerHTML = '';
-    
-    const sortedTraits = Object.entries(traits)
-      .sort((a, b) => b[1] - a[1]);
-    
-    sortedTraits.forEach(([trait, score]) => {
-      const div = document.createElement('div');
-      div.innerHTML = `<p><strong>${trait}:</strong> ${score.toFixed(2)}</p>`;
-      traitsContainer.appendChild(div);
-    });
-    
-    document.getElementById('results').style.display = 'block';
-  }
 });

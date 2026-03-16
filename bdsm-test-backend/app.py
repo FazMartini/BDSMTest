@@ -1,80 +1,130 @@
 # Type python app.py
 
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request
 import os
 import json
 
-app = Flask(__name__, static_folder='static', static_url_path='/static')
+app = Flask(__name__, static_folder='static')
 
-# Serve the frontend HTML file when visiting the root URL
+# LOAD QUIZ DATA
+with open("questions.json") as f:
+    data = json.load(f)
+
+traits = data["traits"]
+questions = data["questions"]
+matrix = data["trait_matrix"]
+
+exclusivity = matrix["exclusivity"]
+synergy = matrix["synergy"]
+
+# Serve index.html at root
 @app.route('/')
 def index():
-    return send_from_directory(os.path.join(app.root_path, 'static'), 'index.html')
+    return app.send_static_file('index.html')
 
 @app.route('/bdsm-personality-test')
 def personality_test():
-    return send_from_directory(os.path.join(app.root_path, 'static'), 'index.html')
-
-# Serve static files (CSS, JS, etc.)
-@app.route('/static/<path:filename>')
-def serve_static(filename):
-    return send_from_directory(os.path.join(app.root_path, 'static'), filename)
+    return app.send_static_file('index.html')
 
 # Endpoint to get the questions
 @app.route('/questions', methods=['GET'])
 def get_questions():
     try:
         with open("questions.json", "r") as f:
-            questions = json.load(f)
-        return jsonify(questions)
+            dataset = json.load(f)
+        # Send only the questions array
+        return jsonify(dataset["questions"])
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-# Endpoint to get the traits for a specific question
-@app.route('/traits/<question_id>', methods=['GET'])
-def get_traits(question_id):
-        with open("questions.json", "r") as f:
-            questions = json.load(f)
-        question = next((q for q in questions if q['id'] == question_id), None)
-        if question:
-            return jsonify(question['traits'])
-        else:
-            return jsonify({'error': 'Question not found'}), 404
-
-# Endpoint to get the traits for all questions
-@app.route('/all_traits', methods=['GET'])
-def get_all_traits():
-        with open("questions.json", "r") as f:
-            questions = json.load(f)
-        traits = set()
-        for question in questions:
-            traits.update(question['traits'].keys())
-        return jsonify(list(traits))
-
-# Endpoint to submit the answers and calculate the results
+# Serve the frontend HTML file when visiting the root URL
 @app.route('/submit', methods=['POST'])
 def submit_answers():
     try:
+        # Load questions dataset
         with open("questions.json", "r") as f:
-            questions = json.load(f)
+            dataset = json.load(f)
 
-        answers = request.json
-        trait_scores = {trait: 0.0 for question in questions for trait in question['traits']}
-        
-        for answer in answers:
-            question = next((q for q in questions if q['id'] == answer['id']), None)
-            if not question:
-                return jsonify({'error': f"Question {answer['id']} not found"}), 404
-            # Update trait scores based on the answer (ensure numeric)
-            val = float(answer.get('answer', 0))
-            for trait, score in question['traits'].items():
-                trait_scores[trait] += score * val
-        
-        # Return traits sorted largest to smallest (preserves order in Python 3.7+)
-        sorted_traits = dict(sorted(trait_scores.items(), key=lambda kv: kv[1], reverse=True))
-        return jsonify(sorted_traits)
+        questions = dataset["questions"]
+        traits = dataset["traits"]
+        matrix = dataset.get("trait_matrix", {})
+        exclusivity = matrix.get("exclusivity", {})
+        synergy = matrix.get("synergy", {})
+
+        # Load user answers
+        user_answers = {ans['id']: ans.get('answer', 0) for ans in request.json}
+
+        # Initialize raw scores
+        raw_trait_scores = {t: 0.0 for t in traits}
+        trait_counts = {t: 0.0 for t in traits}
+
+        for q in questions:
+            qid = q['id']
+            if qid not in user_answers:
+                continue
+
+            ans = float(user_answers[qid])
+
+            # Reverse scoring (1-5 scale)
+            if q.get("reverse", False):
+                ans = 6 - ans
+
+            primary_weight = float(q.get("primary_weight", 1.0))
+
+            # Primary trait
+            raw_trait_scores[q["primary_trait"]] += ans * primary_weight
+            trait_counts[q["primary_trait"]] += primary_weight
+
+            # Secondary traits
+            for sec_trait, weight in q.get("secondary_traits", {}).items():
+                weight = float(weight)
+                if sec_trait in raw_trait_scores:
+                    raw_trait_scores[sec_trait] += ans * weight
+                    trait_counts[sec_trait] += abs(weight)
+
+        # Apply exclusivity and synergy to raw scores
+        adjusted_trait_scores = raw_trait_scores.copy()
+
+        # Exclusivity: subtract conflicting trait influence using raw scores
+        for trait, conflicts in exclusivity.items():
+            if trait not in adjusted_trait_scores:
+                continue
+            for other_trait, penalty in conflicts.items():
+                if other_trait in raw_trait_scores:
+                    adjusted_trait_scores[trait] -= raw_trait_scores[other_trait] * float(penalty)
+
+        # Synergy: add bonus based on overlap using raw scores
+        for trait, partners in synergy.items():
+            if trait not in adjusted_trait_scores:
+                continue
+            for other_trait, bonus in partners.items():
+                if other_trait in raw_trait_scores:
+                    boost = min(raw_trait_scores[trait], raw_trait_scores[other_trait]) * float(bonus)
+                    adjusted_trait_scores[trait] += boost
+
+        # Clamp negatives to zero
+        for t in traits:
+            adjusted_trait_scores[t] = max(0.0, adjusted_trait_scores[t])
+
+        # Normalize to 0-100%
+        trait_percentages = {}
+        for t in traits:
+            if trait_counts[t] > 0:
+                pct = (adjusted_trait_scores[t] / (trait_counts[t] * 5)) * 100
+                pct = max(0, min(100, pct))   # clamp to 0–100
+                trait_percentages[t] = round(pct, 1)
+            else:
+                trait_percentages[t] = 0.0
+
+        # Return result
+        return jsonify({
+            "trait_percentages": trait_percentages
+        })
+
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return jsonify({"error": str(e)}), 500
 
+#if __name__ == '__main__':
+#    app.run(host='0.0.0.0', port=5000, debug=True)
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(debug=True)

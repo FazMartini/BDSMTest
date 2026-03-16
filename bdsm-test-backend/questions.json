@@ -1,168 +1,792 @@
-[
-  {
-    "id": 1,
-    "text": "I enjoy being chased and captured.",
-    "traits": {
-      "Primal Prey": 1.0,
-      "Masochist": 0.5
+{
+  "traits": [
+    "Dominant",
+    "Submissive",
+    "Switch",
+    "Soft Switch",
+    "Situational Switch",
+    "Psychological Player",
+    "Mind Controller",
+    "Emotional Sadist",
+    "Sadist",
+    "Masochist",
+    "Cathartic Masochist",
+    "Sensualist",
+    "Degradee",
+    "Fear Player",
+    "Roleplayer",
+    "Primal Hunter",
+    "Primal Prey",
+    "Caregiver",
+    "Service Submissive",
+    "Service Top",
+    "Objectification Lover",
+    "Poly Player",
+    "Ethical Non-Monogamy",
+    "Compersion",
+    "Monogamous Kinkster",
+    "Romantic Player",
+    "Relationship Switch",
+    "Gender Play",
+    "Gender-Aware Player",
+    "Gender-Affirming Kink",
+    "Nonbinary Switch",
+    "Contract Kinkster",
+    "24/7 Lifestyle Player",
+    "Voyeur",
+    "Observer",
+    "Community-Oriented Player",
+    "Solo Kinkster",
+    "Communication-Focused Player",
+    "Vanilla"
+  ],
+
+  "questions": [
+    {
+      "id": 1,
+      "question": "I feel most fulfilled when I control how a scene progresses.",
+      "primary_trait": "Dominant",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Mind Controller": 0.4,
+        "Contract Kinkster": 0.2,
+        "Sadist": 0.2
+      },
+      "reverse": true
+    },
+    {
+      "id": 2,
+      "question": "I am most comfortable when I surrender control to a partner.",
+      "primary_trait": "Submissive",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Service Submissive": 0.4,
+        "Masochist": 0.2,
+        "Romantic Player": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 3,
+      "question": "I often fantasize about moving between leading and following.",
+      "primary_trait": "Switch",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Soft Switch": 0.4,
+        "Situational Switch": 0.4,
+        "Relationship Switch": 0.2
+      },
+      "reverse": true
+    },
+    {
+      "id": 4,
+      "question": "I like experiences where I explore dominance only occasionally.",
+      "primary_trait": "Soft Switch",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Switch": 0.5,
+        "Submissive": 0.2,
+        "Dominant": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 5,
+      "question": "I enjoy experiences where the situation decides who leads.",
+      "primary_trait": "Situational Switch",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Switch": 0.5,
+        "Relationship Switch": 0.4,
+        "Soft Switch": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 6,
+      "question": "I enjoy situations where mental power dynamics are involved.",
+      "primary_trait": "Psychological Player",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Mind Controller": 0.4,
+        "Emotional Sadist": 0.3,
+        "Fear Player": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 7,
+      "question": "I get turned on by controlling someone\u2019s thoughts or decisions.",
+      "primary_trait": "Mind Controller",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Dominant": 0.4,
+        "Psychological Player": 0.4,
+        "Emotional Sadist": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 8,
+      "question": "I tend to prefer moments where I explore emotional vulnerability.",
+      "primary_trait": "Emotional Sadist",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Psychological Player": 0.4,
+        "Sadist": 0.3,
+        "Mind Controller": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 9,
+      "question": "I feel excited when I create intense sensations.",
+      "primary_trait": "Sadist",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Dominant": 0.3,
+        "Emotional Sadist": 0.2,
+        "Primal Hunter": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 10,
+      "question": "I like experiences where I receive intense physical stimulation.",
+      "primary_trait": "Masochist",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Submissive": 0.3,
+        "Cathartic Masochist": 0.3,
+        "Fear Player": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 11,
+      "question": "Controlled pain allows me emotional release.",
+      "primary_trait": "Cathartic Masochist",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Masochist": 0.5,
+        "Psychological Player": 0.2,
+        "Fear Player": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 12,
+      "question": "Soft textures and gentle sensations turn me on more than pain.",
+      "primary_trait": "Sensualist",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Romantic Player": 0.3,
+        "Caregiver": 0.2,
+        "Monogamous Kinkster": 0.2,
+        "Vanilla": 0.3
+      },
+      "reverse": false
+    },
+    {
+      "id": 13,
+      "question": "Being demeaned or verbally degraded turns me on.",
+      "primary_trait": "Degradee",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Submissive": 0.4,
+        "Masochist": 0.3,
+        "Fear Player": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 14,
+      "question": "I enjoy situations where threat-like tension is present.",
+      "primary_trait": "Fear Player",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Masochist": 0.3,
+        "Psychological Player": 0.3,
+        "Primal Prey": 0.2
+      },
+      "reverse": true
+    },
+    {
+      "id": 15,
+      "question": "I am most comfortable when I play a different persona.",
+      "primary_trait": "Roleplayer",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Gender Play": 0.2,
+        "Psychological Player": 0.2,
+        "Primal Hunter": 0.1
+      },
+      "reverse": false
+    },
+    {
+      "id": 16,
+      "question": "I am comfortable when raw physical dominance occurs.",
+      "primary_trait": "Primal Hunter",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Dominant": 0.3,
+        "Sadist": 0.3,
+        "Roleplayer": 0.1
+      },
+      "reverse": false
+    },
+    {
+      "id": 17,
+      "question": "I feel most fulfilled when I am overpowered.",
+      "primary_trait": "Primal Prey",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Submissive": 0.3,
+        "Masochist": 0.3,
+        "Fear Player": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 18,
+      "question": "I feel most fulfilled when taking care of my partner.",
+      "primary_trait": "Caregiver",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Romantic Player": 0.3,
+        "Communication-Focused Player": 0.3,
+        "Monogamous Kinkster": 0.1,
+        "Service Top": 0.3
+      },
+      "reverse": false
+    },
+    {
+      "id": 19,
+      "question": "I tend to prioritize acts of service.",
+      "primary_trait": "Service Submissive",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Submissive": 0.5,
+        "Caregiver": 0.2,
+        "Contract Kinkster": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 20,
+      "question": "I take pleasure in being treated like an object.",
+      "primary_trait": "Objectification Lover",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Submissive": 0.3,
+        "Roleplayer": 0.3,
+        "Degradee": 0.2
+      },
+      "reverse": true
+    },
+    {
+      "id": 21,
+      "question": "I am comfortable when multiple partners are involved.",
+      "primary_trait": "Poly Player",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Ethical Non-Monogamy": 0.5,
+        "Compersion": 0.3,
+        "Relationship Switch": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 22,
+      "question": "I enjoy situations where partners openly date others.",
+      "primary_trait": "Ethical Non-Monogamy",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Poly Player": 0.5,
+        "Compersion": 0.2,
+        "Communication-Focused Player": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 23,
+      "question": "I enjoy situations where someone I love shares affection elsewhere.",
+      "primary_trait": "Compersion",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Poly Player": 0.4,
+        "Ethical Non-Monogamy": 0.3,
+        "Romantic Player": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 24,
+      "question": "I tend to focus on one exclusive partner.",
+      "primary_trait": "Monogamous Kinkster",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Romantic Player": 0.3,
+        "Caregiver": 0.2,
+        "Sensualist": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 25,
+      "question": "Romantic connection drives intimacy for me.",
+      "primary_trait": "Romantic Player",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Caregiver": 0.3,
+        "Monogamous Kinkster": 0.2,
+        "Sensualist": 0.2
+      },
+      "reverse": true
+    },
+    {
+      "id": 26,
+      "question": "I feel excited when relationships change my role.",
+      "primary_trait": "Relationship Switch",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Situational Switch": 0.4,
+        "Switch": 0.3,
+        "Poly Player": 0.1
+      },
+      "reverse": false
+    },
+    {
+      "id": 27,
+      "question": "I feel excited when gender roles are explored.",
+      "primary_trait": "Gender Play",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Roleplayer": 0.4,
+        "Nonbinary Switch": 0.2,
+        "Gender-Aware Player": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 28,
+      "question": "I feel excited when my gender identity shapes the scene.",
+      "primary_trait": "Gender-Aware Player",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Gender-Affirming Kink": 0.4,
+        "Gender Play": 0.2,
+        "Communication-Focused Player": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 29,
+      "question": "I like experiences where gender validation happens in play.",
+      "primary_trait": "Gender-Affirming Kink",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Gender-Aware Player": 0.5,
+        "Romantic Player": 0.2,
+        "Communication-Focused Player": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 30,
+      "question": "I feel excited when gender does not define roles.",
+      "primary_trait": "Nonbinary Switch",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Gender Play": 0.3,
+        "Switch": 0.3,
+        "Situational Switch": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 31,
+      "question": "I am most comfortable when rules are negotiated beforehand.",
+      "primary_trait": "Contract Kinkster",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Dominant": 0.2,
+        "Submissive": 0.2,
+        "24/7 Lifestyle Player": 0.3
+      },
+      "reverse": true
+    },
+    {
+      "id": 32,
+      "question": "I am happy when roles extend beyond scenes into daily life.",
+      "primary_trait": "24/7 Lifestyle Player",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Contract Kinkster": 0.4,
+        "Dominant": 0.2,
+        "Submissive": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 33,
+      "question": "Watching others interact intimately is exciting.",
+      "primary_trait": "Voyeur",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Observer": 0.4,
+        "Poly Player": 0.1,
+        "Roleplayer": 0.1
+      },
+      "reverse": false
+    },
+    {
+      "id": 34,
+      "question": "I enjoy watching others engage in kink without participating.",
+      "primary_trait": "Observer",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Voyeur": 0.4,
+        "Community-Oriented Player": 0.2,
+        "Communication-Focused Player": 0.1
+      },
+      "reverse": false
+    },
+    {
+      "id": 35,
+      "question": "I feel excited when I participate in kink communities.",
+      "primary_trait": "Community-Oriented Player",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Observer": 0.2,
+        "Voyeur": 0.1,
+        "Communication-Focused Player": 0.2
+      },
+      "reverse": false
+    },
+    {
+      "id": 36,
+      "question": "I am most comfortable when I practice kink solo.",
+      "primary_trait": "Solo Kinkster",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Roleplayer": 0.2,
+        "Sensualist": 0.1,
+        "Psychological Player": 0.1
+      },
+      "reverse": false
+    },
+    {
+      "id": 37,
+      "question": "I am most comfortable when partners check in frequently.",
+      "primary_trait": "Communication-Focused Player",
+      "primary_weight": 1.0,
+      "secondary_traits": {
+        "Contract Kinkster": 0.2,
+        "Ethical Non-Monogamy": 0.2,
+        "Caregiver": 0.2
+      },
+      "reverse": false
+    }
+  ],
+
+  "trait_matrix" :{
+  "exclusivity": {
+    "Dominant": {
+      "Submissive": 0.35,
+      "Service Submissive": 0.30,
+      "Primal Prey": 0.25
+    },
+    "Submissive": {
+      "Dominant": 0.35,
+      "Primal Hunter": 0.30,
+      "Service Top": 0.20
+    },
+    "Service Submissive": {
+      "Dominant": 0.40,
+      "Service Top": 0.25
+    },
+    "Service Top": {
+      "Service Submissive": 0.25,
+      "Observer": 0.10
+    },
+    "Primal Hunter": {
+      "Submissive": 0.25,
+      "Primal Prey": 0.20
+    },
+    "Primal Prey": {
+      "Dominant": 0.30,
+      "Primal Hunter": 0.20
+    },
+    "Poly Player": {
+      "Monogamous Kinkster": 0.45
+    },
+    "Ethical Non-Monogamy": {
+      "Monogamous Kinkster": 0.40
+    },
+    "Compersion": {
+      "Monogamous Kinkster": 0.20
+    },
+    "Monogamous Kinkster": {
+      "Poly Player": 0.45,
+      "Ethical Non-Monogamy": 0.40,
+      "Compersion": 0.15
+    },
+    "Community-Oriented Player": {
+      "Solo Kinkster": 0.30
+    },
+    "Solo Kinkster": {
+      "Community-Oriented Player": 0.30
+    },
+    "Vanilla": {
+      "Sadist": 0.35,
+      "Masochist": 0.35,
+      "Fear Player": 0.30,
+      "Degradee": 0.30,
+      "Objectification Lover": 0.30,
+      "24/7 Lifestyle Player": 0.20,
+      "Contract Kinkster": 0.10
+    },
+    "Sadist": {
+      "Vanilla": 0.20,
+      "Sensualist": 0.15,
+      "Masochist": 0.10
+    },
+    "Masochist": {
+      "Vanilla": 0.20,
+      "Sadist": 0.10
+    },
+    "Fear Player": {
+      "Vanilla": 0.15,
+      "Sensualist": 0.15
+    },
+    "Degradee": {
+      "Vanilla": 0.15
+    },
+    "Objectification Lover": {
+      "Vanilla": 0.15
+    },
+    "Sensualist": {
+      "Sadist": 0.20,
+      "Fear Player": 0.20
+    },
+    "24/7 Lifestyle Player": {
+      "Vanilla": 0.35
+    },
+    "Contract Kinkster": {
+      "Vanilla": 0.20
+    },
+    "Voyeur": {
+      "Observer": 0.05
+    },
+    "Observer": {
+      "Service Top": 0.10
     }
   },
-  {
-    "id": 2,
-    "text": "Serving someone brings me joy, even without sexual reward.",
-    "traits": {
-      "Service Submissive": 1.0,
-      "Submissive": 0.5
-    }
-  },
-  {
-    "id": 3,
-    "text": "I get turned on by controlling someone\u2019s thoughts or decisions.",
-    "traits": {
-      "Mind Controller": 1.0,
-      "Dominant": 0.5
-    }
-  },
-  {
-    "id": 4,
-    "text": "I enjoy watching others engage in kink without participating.",
-    "traits": {
-      "Observer": 1.0,
-      "Voyeur": 0.5
-    }
-  },
-  {
-    "id": 5,
-    "text": "I enjoy scenarios that make me feel afraid, safely.",
-    "traits": {
-      "Fear Player": 1.0,
-      "Masochist": 0.5,
-      "Edge Player": 0.5
-    }
-  },
-  {
-    "id": 6,
-    "text": "Being used as furniture or decor arouses me.",
-    "traits": {
-      "Objectification Lover": 1.0,
-      "Submissive": 0.5
-    }
-  },
-  {
-    "id": 7,
-    "text": "I enjoy changing roles depending on who I\u2019m with.",
-    "traits": {
-      "Soft Switch": 1.0,
-      "Switch": 0.5
-    }
-  },
-  {
-    "id": 8,
-    "text": "I need emotional intimacy to enjoy kink play.",
-    "traits": {
-      "Romantic Player": 1.0,
-      "DDLG": 0.5
-    }
-  },
-  {
-    "id": 9,
-    "text": "I express kink with more than one partner.",
-    "traits": {
-      "Poly Player": 1.0,
-      "Switch": 0.3
-    }
-  },
-  {
-    "id": 10,
-    "text": "I love the thrill of stalking and chasing my partner.",
-    "traits": {
-      "Primal Hunter": 1.0,
-      "Sadist": 0.5
-    }
-  },
-  {
-    "id": 11,
-    "text": "Pain helps me process emotions or feel release.",
-    "traits": {
-      "Cathartic Masochist": 1.0,
-      "Masochist": 0.5
-    }
-  },
-  {
-    "id": 12,
-    "text": "Becoming a different character excites me during kink.",
-    "traits": {
-      "Roleplayer": 1.0,
-      "Switch": 0.5
-    }
-  },
-  {
-    "id": 13,
-    "text": "Clear rules and structure make kink more fulfilling.",
-    "traits": {
-      "Contract Kinkster": 1.0,
-      "Master/Slave": 0.5
-    }
-  },
-  {
-    "id": 14,
-    "text": "I feel most fulfilled when taking care of my partner.",
-    "traits": {
-      "Caregiver": 1.0,
-      "Romantic": 0.5,
-      "Service Top": 0.5
-    }
-  },
-  {
-    "id": 15,
-    "text": "I enjoy kink activities even when I\u2019m alone.",
-    "traits": {
-      "Solo Kinkster": 1.0,
-      "Voyeur": 0.3,
-      "Fantasy-Focused": 0.5
-    }
-  },
-  {
-    "id": 16,
-    "text": "Soft textures and gentle sensations turn me on more than pain.",
-    "traits": {
-      "Sensualist": 1.0,
-      "Vanilla": 0.3
-    }
-  },
-  {
-    "id": 17,
-    "text": "Being insulted or demeaned turns me on.",
-    "traits": {
-      "Degradee": 1.0,
-      "Masochist": 0.5,
-      "Submissive": 0.5
-    }
-  },
-  {
-    "id": 18,
-    "text": "I enjoy playing with someone\u2019s emotions, consensually.",
-    "traits": {
-      "Sadist (Emotional)": 1.0,
-      "Dominant": 0.5,
-      "Edge Player": 0.3
-    }
-  },
-  {
-    "id": 19,
-    "text": "I explore different power dynamics beyond gendered expectations.",
-    "traits": {
-      "Nonbinary Switch": 1.0,
-      "Switch": 0.5,
-      "Genderfluid": 0.5
-    }
-  },
-  {
-    "id": 20,
-    "text": "My kink dynamics extend beyond scenes into daily life.",
-    "traits": {
-      "24/7 Lifestyle Player": 1.0,
-      "Master/Slave": 0.5
+  "synergy": {
+    "Dominant": {
+      "Sadist": 0.12,
+      "Mind Controller": 0.12,
+      "Contract Kinkster": 0.08
+    },
+    "Submissive": {
+      "Masochist": 0.12,
+      "Service Submissive": 0.12,
+      "Primal Prey": 0.08
+    },
+    "Switch": {
+      "Situational Switch": 0.12,
+      "Relationship Switch": 0.10,
+      "Soft Switch": 0.10
+    },
+    "Soft Switch": {
+      "Switch": 0.10,
+      "Situational Switch": 0.08
+    },
+    "Situational Switch": {
+      "Switch": 0.12,
+      "Relationship Switch": 0.10
+    },
+    "Psychological Player": {
+      "Mind Controller": 0.15,
+      "Emotional Sadist": 0.12,
+      "Fear Player": 0.08,
+      "Roleplayer": 0.08
+    },
+    "Mind Controller": {
+      "Dominant": 0.12,
+      "Psychological Player": 0.15,
+      "Emotional Sadist": 0.10
+    },
+    "Emotional Sadist": {
+      "Psychological Player": 0.12,
+      "Mind Controller": 0.10,
+      "Sadist": 0.08
+    },
+    "Sadist": {
+      "Dominant": 0.12,
+      "Primal Hunter": 0.10,
+      "Emotional Sadist": 0.08
+    },
+    "Masochist": {
+      "Submissive": 0.12,
+      "Cathartic Masochist": 0.12,
+      "Primal Prey": 0.08,
+      "Fear Player": 0.08
+    },
+    "Cathartic Masochist": {
+      "Masochist": 0.12,
+      "Psychological Player": 0.08
+    },
+    "Sensualist": {
+      "Romantic Player": 0.10,
+      "Vanilla": 0.10,
+      "Caregiver": 0.08
+    },
+    "Degradee": {
+      "Submissive": 0.10,
+      "Masochist": 0.08,
+      "Fear Player": 0.08
+    },
+    "Fear Player": {
+      "Primal Prey": 0.10,
+      "Psychological Player": 0.08,
+      "Masochist": 0.08
+    },
+    "Roleplayer": {
+      "Gender Play": 0.10,
+      "Psychological Player": 0.08,
+      "Objectification Lover": 0.08
+    },
+    "Primal Hunter": {
+      "Sadist": 0.10,
+      "Dominant": 0.08
+    },
+    "Primal Prey": {
+      "Fear Player": 0.10,
+      "Masochist": 0.08,
+      "Submissive": 0.08
+    },
+    "Caregiver": {
+      "Service Top": 0.15,
+      "Romantic Player": 0.10,
+      "Communication-Focused Player": 0.10
+    },
+    "Service Submissive": {
+      "Submissive": 0.12,
+      "Contract Kinkster": 0.08
+    },
+    "Service Top": {
+      "Caregiver": 0.15,
+      "Dominant": 0.08
+    },
+    "Objectification Lover": {
+      "Roleplayer": 0.08,
+      "Degradee": 0.08
+    },
+    "Poly Player": {
+      "Ethical Non-Monogamy": 0.15,
+      "Compersion": 0.10,
+      "Relationship Switch": 0.08
+    },
+    "Ethical Non-Monogamy": {
+      "Poly Player": 0.15,
+      "Compersion": 0.08,
+      "Communication-Focused Player": 0.08
+    },
+    "Compersion": {
+      "Poly Player": 0.10,
+      "Ethical Non-Monogamy": 0.08,
+      "Romantic Player": 0.06
+    },
+    "Monogamous Kinkster": {
+      "Romantic Player": 0.10,
+      "Caregiver": 0.08,
+      "Sensualist": 0.08
+    },
+    "Romantic Player": {
+      "Sensualist": 0.10,
+      "Caregiver": 0.10,
+      "Monogamous Kinkster": 0.10,
+      "Gender-Affirming Kink": 0.06
+    },
+    "Relationship Switch": {
+      "Switch": 0.10,
+      "Situational Switch": 0.10,
+      "Poly Player": 0.08
+    },
+    "Gender Play": {
+      "Roleplayer": 0.10,
+      "Nonbinary Switch": 0.08,
+      "Gender-Aware Player": 0.08
+    },
+    "Gender-Aware Player": {
+      "Gender-Affirming Kink": 0.15,
+      "Gender Play": 0.08,
+      "Communication-Focused Player": 0.08
+    },
+    "Gender-Affirming Kink": {
+      "Gender-Aware Player": 0.15,
+      "Romantic Player": 0.06,
+      "Communication-Focused Player": 0.08
+    },
+    "Nonbinary Switch": {
+      "Switch": 0.10,
+      "Gender Play": 0.08,
+      "Situational Switch": 0.08
+    },
+    "Contract Kinkster": {
+      "24/7 Lifestyle Player": 0.12,
+      "Communication-Focused Player": 0.10,
+      "Dominant": 0.08,
+      "Submissive": 0.08
+    },
+    "24/7 Lifestyle Player": {
+      "Contract Kinkster": 0.12,
+      "Dominant": 0.08,
+      "Submissive": 0.08
+    },
+    "Voyeur": {
+      "Observer": 0.08,
+      "Community-Oriented Player": 0.05
+    },
+    "Observer": {
+      "Voyeur": 0.08,
+      "Community-Oriented Player": 0.06
+    },
+    "Community-Oriented Player": {
+      "Voyeur": 0.05,
+      "Observer": 0.06,
+      "Communication-Focused Player": 0.08
+    },
+    "Solo Kinkster": {
+      "Roleplayer": 0.08,
+      "Psychological Player": 0.06,
+      "Sensualist": 0.05
+    },
+    "Communication-Focused Player": {
+      "Contract Kinkster": 0.10,
+      "Ethical Non-Monogamy": 0.08,
+      "Caregiver": 0.10,
+      "Gender-Aware Player": 0.08,
+      "Gender-Affirming Kink": 0.08,
+      "Community-Oriented Player": 0.08
+    },
+    "Vanilla": {
+      "Sensualist": 0.10,
+      "Romantic Player": 0.08,
+      "Monogamous Kinkster": 0.08
     }
   }
-]
+  },
+
+"scoring": {
+"answer_scale": {
+  "1": -2,
+  "2": -1,
+  "3": 0,
+  "4": 1,
+  "5": 2
+}
+}
+}

@@ -1,0 +1,254 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html, body {
+    height: 100%;
+  }
+
+body {
+    background-color: black;
+    font-family: 'Helvetica', Helvetica, monospace;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    max-width: 800px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#questionsContainer {
+    margin-bottom: 20px;
+}
+
+.question {
+    margin-bottom: 15px;
+}
+
+.question-block {
+    padding: 15px;                 /* Add padding around each question */
+    padding-left: 40px;            /* increase left padding inside block */
+    padding-right: 15px;           /* match right padding */
+    margin-bottom: 10px;           /* spacing between questions */
+    background-color: #333;        /* dark background for the question block */
+    border-radius: 8px;            /* rounded corners */
+}
+
+.question-block p {
+    display: block;                /* question text on its own line */
+    margin: 0 0 8px 0;             /* space below the question */
+    max-width: 100%;
+}
+
+/* keep the radio options on a single line below the question */
+.question-block .options {
+    display: flex;
+    gap: 25px;                      /* increased gap between options */
+    flex-wrap: nowrap;             /* prevent wrapping to multiple lines */
+    align-items: stretch;
+    margin-top: 12px;
+}
+
+.question-block .options label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;                       /* space between radio and label text */
+    font-size: 16px;
+    white-space: nowrap;
+    color: white;
+}
+
+.question-block input[type="radio"] {
+    margin: 0;
+    transform: scale(1);
+    vertical-align: middle;
+}
+
+button {
+    width: 100%;
+    padding: 16px;
+    background-color: cadetblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: 'Helvetica', Helvetica, monospace;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: cadetblue;
+}
+
+#result {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e9f7df;
+    border-radius: 5px;
+}
+
+/* Results container: centered and block-style */
+#results {
+    margin: 20px auto 0;
+    padding: 15px;
+    background-color: black;
+    border-radius: 5px;
+    display: none;
+    width: 50%;         /* make the results column half as wide */
+    box-sizing: border-box;
+}
+
+/* keep trait rows full width of the narrower column */
+#traitsContainer p {
+    color: white;
+    margin: 10px 0;
+    padding: 8px;
+    background-color: #333;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Trait name and score styling */
+#traitsContainer .trait .trait-name {
+    color: white;
+    text-align: left;
+    flex: 1;
+}
+
+#traitsContainer .trait .score {
+    color: cadetblue;
+    font-weight: bold;
+    margin-left: 12px;
+    white-space: nowrap;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .question-block {
+        padding: 12px;
+        padding-left: 15px;
+        padding-right: 12px;
+        margin-bottom: 15px;
+    }
+
+    .question-block p {
+        font-size: 14px;
+        margin: 0 0 10px 0;
+    }
+
+    .question-block .options {
+        display: flex;
+        gap: 8px;
+        flex-wrap: nowrap;
+        margin-top: 10px;
+        overflow-x: auto;
+    }
+
+    .question-block .options label {
+        font-size: 11px;
+        gap: 3px;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .question-block input[type="radio"] {
+        transform: scale(0.8);
+    }
+
+    button {
+        padding: 14px;
+        font-size: 15px;
+    }
+
+    #results {
+        width: 90%;
+        margin: 20px auto 0;
+        padding: 12px;
+    }
+
+    #traitsContainer p {
+        font-size: 14px;
+        padding: 6px;
+        margin: 8px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .question-block {
+        padding: 10px;
+        padding-left: 12px;
+    }
+
+    .question-block .options {
+        gap: 6px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+
+    .question-block .options label {
+        font-size: 10px;
+        gap: 2px;
+        flex-shrink: 0;
+    }
+
+    .question-block input[type="radio"] {
+        transform: scale(0.7);
+    }
+
+    button {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    #results {
+        width: 95%;
+        padding: 10px;
+    }
+
+    #traitsContainer p {
+        font-size: 13px;
+        padding: 5px;
+    }
+}
